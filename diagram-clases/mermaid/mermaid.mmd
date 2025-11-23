@@ -1,0 +1,38 @@
+---
+title: Modelo Conceptual
+---
+classDiagram
+
+                            direction RL
+                                     
+                            class TipoIdentificacion{
+                                &lt;&lt;enumeration&gt;&gt;
+                                CEDULA
+                                PASAPORTE
+                            }
+                    
+                            class Persona {
+                                +nombres: String
+                                +apellidos: String
+                                +numero_identificacion: String
+                                +tipo_identificacion: TipoIdentificacion
+                                +getNombres() String
+                                +setNombres(nombres)
+                            }
+                    
+                            class CuentaBancaria {
+                                +numero: String
+                                +tipo_cuenta: TipoCuenta
+                                +getNumero() String
+                                +setNumero(numero)
+                            }
+
+                            class TipoCuenta{
+                                &lt;&lt;enumeration&gt;&gt;
+                                AHORRO
+                                CORRIENTE
+                            }
+                            
+                            TipoIdentificacion .. Persona
+                            Persona "1" *-- "0..*" CuentaBancaria: tiene
+                            CuentaBancaria ..  TipoCuenta
