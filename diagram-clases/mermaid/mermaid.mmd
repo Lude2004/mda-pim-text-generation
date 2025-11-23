@@ -5,34 +5,35 @@ classDiagram
 
                             direction RL
                                      
-                            class TipoIdentificacion{
-                                &lt;&lt;enumeration&gt;&gt;
-                                CEDULA
-                                PASAPORTE
+                            class Declaracion {
+                                +generarTextoDeclaracion()
+                                +exportarDeclaracion()
                             }
                     
-                            class Persona {
-                                +nombres: String
-                                +apellidos: String
-                                +numero_identificacion: String
-                                +tipo_identificacion: TipoIdentificacion
-                                +getNombres() String
-                                +setNombres(nombres)
+                            class Proyecto {
+                                -String metodologia
                             }
                     
-                            class CuentaBancaria {
-                                +numero: String
-                                +tipo_cuenta: TipoCuenta
-                                +getNumero() String
-                                +setNumero(numero)
+                            class MiembroEquipo {
+                                -String nombre
+                                -String rol
                             }
 
-                            class TipoCuenta{
-                                &lt;&lt;enumeration&gt;&gt;
-                                AHORRO
-                                CORRIENTE
+                            class Fase {
+                                -String nombre
                             }
                             
-                            TipoIdentificacion .. Persona
-                            Persona "1" *-- "0..*" CuentaBancaria: tiene
-                            CuentaBancaria ..  TipoCuenta
+                            class Tarea {
+                                -String descripcion
+                            }
+
+                            class HerramientaIA {
+                                -String nombre
+                                -String version 
+                            }
+
+                            Proyecto "1" -- "1" Declaracion : describe un
+                            MiembroEquipo "1..*" -- "1" Proyecto : tiene
+                            Fase "1..*" -- "1" Proyecto : se organiza en
+                            Tarea "1..*" -- "1" Fase : abarca
+                            HerramientaIA "1..*" -- "1..*" Tarea : se apoya en

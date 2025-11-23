@@ -45,31 +45,44 @@
            var plantUmlServicio = 'http://localhost:8080/plantuml/png/';
            var plantUmlCode = `
                @startuml
-               class Paginaweb {
-               -nombre: string
-               +getNombre(): string
-               +setNombre(nombre: string): void
-               }
-               $(document).ready
-
-               class Header {
-               +titulo: string
-               +nombre: double
-               }
+                class Declaracion {
+                    +generarTextoDeclaracion()
+                    +exportarDeclaracion()
+                }
 
 
-               class Paragraph {
-               +texto: string
-               }
+                class Proyecto {
+                    -metodologia: string
+                }
 
 
-               class Footer {
-               +info: string
-               }
-              
-               Paginaweb "1" *-- "1" Header : tiene
-               Paginaweb "1" *-- "0..*" Paragraph : tiene
-               Paginaweb "1" *-- "1" Footer : tiene
+                class MiembroEquipo {
+                    -nombre: string
+                    -rol: string
+                }
+
+
+                class Fase {
+                    -nombre: string
+                }
+
+
+                class Tarea {
+                    -descripcion: string
+                }
+
+
+                class HerramientaIA {
+                    -nombre: string
+                    -version: string
+                }
+
+                
+                Declaracion "1" -- "1" Proyecto : describe un
+                Proyecto "1" -- "1..*" MiembroEquipo : tiene
+                Proyecto "1" -- "1..*" Fase : se organiza en
+                Fase "1" -- "1..*" Tarea : abarca
+                Tarea "1..*" -- "1..*" HerramientaIA : se apoya en
                @enduml
            `;
 
