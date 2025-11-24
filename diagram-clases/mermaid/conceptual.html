@@ -34,25 +34,42 @@
                         classDiagram
 
                             direction RL
-
-                            class Hotel{
-
+                                    
+                            class Declaracion {
+                                +generarTextoDeclaracion()
+                                +exportarDeclaracion()
                             }
 
-                            class Habitacion{
-                                +numero:Texto
-                                +precio:Numerico
+                            class Proyecto {
+                                -String metodologia
                             }
 
-                            class TipoHabitacion{
-                                +nombre:Texto
-                                +descripcion:Texto
+                            class MiembroEquipo {
+                                -String nombre
+                                -String rol
                             }
 
-                            TipoHabitacion -- Habitacion
+                            class Fase {
+                                -String nombre
+                            }
+
+                            class Tarea {
+                                -String nombre
+                                -String descripcion
+                            }
+
+                            class HerramientaIA {
+                                -String nombre
+                                -String version 
+                            }
+
+                            Proyecto "1" -- "1" Declaracion : describe un
+                            MiembroEquipo "1..*" -- "1" Proyecto : tiene
+                            Fase "1..*" -- "1" Proyecto : se organiza en
+                            Tarea "0..*" -- "1..*" MiembroEquipo : realiza
+                            Tarea "1..*" -- "1" Fase : abarca
+                            HerramientaIA "1..*" -- "1..*" Tarea : se apoya en
        
-                
-         
                         </div>
                 </div>
             </div> 

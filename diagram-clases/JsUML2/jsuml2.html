@@ -44,6 +44,7 @@
       fase.addAttribute('-nombre:String');
 
       tarea.setName("Tarea");
+      tarea.addAttribute("-nombre:String")
       tarea.addAttribute("-descripcion:String");
 
       herramientaIA.setName("HerramientaIA");
@@ -76,17 +77,23 @@
       asociacion3.setMultiplicityB('1..*');
       classDiagram.addElement(asociacion3);
 
-      var asociacion4 = new UMLAssociation({ a: fase, b: tarea });
-      asociacion4.setValue( 'name', 'abarca');
-      asociacion4.setMultiplicityA('1');
-      asociacion4.setMultiplicityB('1..*');
+      var asociacion4 = new UMLAssociation({ a: miembroEquipo, b: tarea });
+      asociacion4.setValue( 'name', 'realiza');
+      asociacion4.setMultiplicityA('1..*');
+      asociacion4.setMultiplicityB('0..*');
       classDiagram.addElement(asociacion4);
 
-      var asociacion5 = new UMLAssociation({ a: tarea, b: herramientaIA });
-      asociacion5.setValue( 'name', 'se apoya en');
-      asociacion5.setMultiplicityA('1..*');
+      var asociacion5 = new UMLAssociation({ a: fase, b: tarea });
+      asociacion5.setValue( 'name', 'abarca');
+      asociacion5.setMultiplicityA('1');
       asociacion5.setMultiplicityB('1..*');
       classDiagram.addElement(asociacion5);
+
+      var asociacion6 = new UMLAssociation({ a: tarea, b: herramientaIA });
+      asociacion6.setValue( 'name', 'se apoya en');
+      asociacion6.setMultiplicityA('1..*');
+      asociacion6.setMultiplicityB('1..*');
+      classDiagram.addElement(asociacion6);
 
       classDiagram.draw();
       classDiagram.interaction(true);

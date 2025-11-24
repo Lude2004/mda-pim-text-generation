@@ -45,44 +45,46 @@
            var plantUmlServicio = 'http://localhost:8080/plantuml/png/';
            var plantUmlCode = `
                @startuml
-                class Declaracion {
-                    +generarTextoDeclaracion()
-                    +exportarDeclaracion()
-                }
+                    class Declaracion {
+                        +generarTextoDeclaracion()
+                        +exportarDeclaracion()
+                    }
 
 
-                class Proyecto {
-                    -metodologia: string
-                }
+                    class Proyecto {
+                        -metodologia: string
+                    }
 
 
-                class MiembroEquipo {
-                    -nombre: string
-                    -rol: string
-                }
+                    class MiembroEquipo {
+                        -nombre: string
+                        -rol: string
+                    }
 
 
-                class Fase {
-                    -nombre: string
-                }
+                    class Fase {
+                        -nombre: string
+                    }
 
 
-                class Tarea {
-                    -descripcion: string
-                }
+                    class Tarea {
+                        -nombre: string
+                        -descripcion: string
+                    }
 
 
-                class HerramientaIA {
-                    -nombre: string
-                    -version: string
-                }
+                    class HerramientaIA {
+                        -nombre: string
+                        -version: string
+                    }
 
-                
-                Declaracion "1" -- "1" Proyecto : describe un
-                Proyecto "1" -- "1..*" MiembroEquipo : tiene
-                Proyecto "1" -- "1..*" Fase : se organiza en
-                Fase "1" -- "1..*" Tarea : abarca
-                Tarea "1..*" -- "1..*" HerramientaIA : se apoya en
+
+                    Declaracion "1" -- "1" Proyecto : describe un
+                    Proyecto "1" -- "1..*" MiembroEquipo : tiene
+                    Proyecto "1" -- "1..*" Fase : se organiza en
+                    MiembroEquipo "1..*" -- "0..*" Tarea : realiza
+                    Fase "1" -- "1..*" Tarea : abarca
+                    Tarea "1..*" -- "1..*" HerramientaIA : se apoya en
                @enduml
            `;
 
